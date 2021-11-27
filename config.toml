@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://theofficenetwork.netlify.app/"
 languageCode = "en-us"
 title = "The Office Network"
 theme = "introduction"
