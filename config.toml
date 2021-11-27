@@ -2,3 +2,36 @@ baseURL = "https://theofficenetwork.netlify.app/"
 languageCode = "en-us"
 title = "The Office Network"
 theme = "introduction"
+
+[markup.goldmark.renderer]
+    unsafe = true
+
+ [[menu.main]]
+     name    = "Home"
+     url     = "/"
+     weight = 10
+
+ [[menu.main]]
+     identifier = "networks"
+     name    = "Network"
+     url     = "/networks/"
+     weight = 20
+
+ [[menu.main]]
+     identifier = "temporalpatterns"
+     name    = "Temporal patterns"
+     url     = "/temporalpatterns/"
+     weight = 30
+
+ [[menu.main]]
+     identifier = "dialogues"
+     name    = "Analysis of text data"
+     url     = "/dialogues/"
+     weight = 40
+
+[params]
+    themeStyle                  = "dark"
+
+# Configure the home page
+[params.home]
+    introHeight 		= "small"
