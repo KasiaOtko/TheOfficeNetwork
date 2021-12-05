@@ -30,7 +30,7 @@ theme = "introduction"
      weight = 40
 
 [params]
-    themeStyle                  = "dark"
+    themeStyle                  = "light"
 
 # Configure the home page
 [params.home]
