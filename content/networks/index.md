@@ -15,9 +15,9 @@ We can detect communities using variety of methods. The below visualisation show
 
 Number of communities found is 9 and the corresponding modularity score is 0.36. In the context of this measure a partition is good when when there are **many edges within communities and only a few between them** [1] (nodes are densely connected within a community and sparsely connected with the rest of the graph [2]). According to [1], modularity above about 0.3 is a good indicator of significant community structure in a network in practice (network corresponds to a statistically surprising arrangement of edges).
 
-One of natural questions that may come to one's mind - can this partition be done based on the branch that a character worked in? By investigating the above plot we can certainly say this is not the case, otherwise most of main characters should be assigned to one community representing Scranton branch. Let us then take a closer look at the most connected characters in each community. 
+One of natural questions that may come to one's mind - can this partition be based on the branch that a character worked in? By investigating the above plot we can certainly say this is not the case, otherwise most of main characters should be assigned to one community representing Scranton branch. Let us then take a closer look at the most connected characters in each community. 
 
-Below presented are **top 7 most connected characters** (in terms of a total node degree in a full network) **in each community**, represented as 3-column block (`Community`, `Name` and `Degree`), which is repeated for every detected community. Direction of reading of the below table is therefore from **left to right**.  
+Below presented are **top 7 most connected characters** (in terms of a total node degree in a full network) **in each community**, represented as a 2-column block (`Name` and `Degree`), which is repeated for every detected community. Direction of reading of the below table is therefore from **left to right**.  
 The aim is to see what are the most prominent members in each community, without distracting the reader with side- or guest characters that one might not recognize.
   
 <style type="text/css">
@@ -209,12 +209,12 @@ The aim is to see what are the most prominent members in each community, without
 </table>
 
 Some of the key insights derived from the above table and visualisation:
-* Michael Scott is a member of the biggest community (community 0), consisting of 66 people. It is reasonable that [Holly Flax](https://theoffice.fandom.com/wiki/Holly_Flax) (Michael's soulmate) is a member too. To our surprise, he is not connected with any of the main characters besides [Meredith](https://theoffice.fandom.com/wiki/Meredith_Palmer) and [Creed](https://theoffice.fandom.com/wiki/Creed_Bratton), who don't seem to have many friends outside the Scranton Branch and even within it they **did not establish many relationships**. Besides them, the r**est of members have very low degrees**.
+* Michael Scott is a member of the biggest community (community 0), consisting of 66 people. It is reasonable that [Holly Flax](https://theoffice.fandom.com/wiki/Holly_Flax) (Michael's soulmate) is a member too. To our surprise, besides [Meredith](https://theoffice.fandom.com/wiki/Meredith_Palmer) and [Creed](https://theoffice.fandom.com/wiki/Creed_Bratton), who don't seem to have many friends outside the Scranton Branch and even within it they **did not establish many relationships**, the **rest of members of this community have low degrees**.
 * Community 1 seems to be **the best defined** as it is centered around the **relationship betweem Jim and Pam and their families** (we see characters with Beesly and Halpert surnames and [Roy Anderson](https://theoffice.fandom.com/wiki/Roy_Anderson) - former Pam's fiancé).
 * Community 2 is a **small community centered around** [Kevin Malone](https://theoffice.fandom.com/wiki/Kevin_Malone) as it includes his sister, daughter, and girlfriends.
 * Community 3 consists of employees working in different **Dunder Mifflin branches**, usually occupying (at some point) **managerial positions**, including [David Wallace](https://theoffice.fandom.com/wiki/David_Wallace) - company CFO and later CEO - and his family.
 
-Remaining communities include the rest of main characters in different proportions which is also depenednt on how many different threads along the show they share. For example, in community 4 we have Dwight and Angela who had an affair at the beginning of the show. We also have Oscar who is an accountant just like Angela but he also had an affair with Angela's husband - Robert Lipton!
+Remaining communities include the rest of main characters in different proportions which is also dependent on how many different threads along the show they share. For example, in community 4 we have Dwight and Angela who had an affair at the beginning of the show. We also have Oscar who is an accountant just like Angela but he also had an affair with Angela's husband - Robert Lipton!
 
 <h4> Networkx algorithms for community detection </h4>
 
