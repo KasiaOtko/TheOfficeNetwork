@@ -12,13 +12,13 @@ To calculate the sentiments of dialogues using LabMT word list (dictionary-based
 
 ### Overall sentiment analysis
 
-<img src="/Overall_Sentiment_analysis.png" width="90%">
+<img src="/img/Overall_Sentiment_analysis.png" width="90%">
 <center><em>Histograms of the LabMT (to the left) and VADER (to the right) sentiment for the entire The Office dialogue from Season 1-9. </em></center>
 &nbsp;
 
 As seen in the above figures, the **majority of the characters' dialogue have positive sentiment** as compared to the neutral, which is 5.0 and 0.0 for LabMT and VADER, respectively. Furthermore, the distribution of sentiment scores has the shape of a normal distribution for both dictionaries. In order to better visualize and compare results, we will limit our scope to only the **15 main characters** (as defined by us). Their sentiments are ranked below using the two different approaches.
 
-<img src="/Overall_Sentiment_analysis_vader.png" width="90%">
+<img src="/img/Overall_Sentiment_analysis_vader.png" width="90%">
 <center><em>In the plots above, main characters are ranked according to the LabMT and VADER sentiment score of their entire dialogue in Season 1-9.</em></center>
 &nbsp;
 
@@ -31,13 +31,13 @@ In fact, **LabMT doesn't work well with our dataset**, since we have very short 
 
 In this section we will perform **sentiment analysis on the seperate seasons** of The Office to provide a temporal dimension. The plot below illustrates how some selected character's mood has changed throughout the TV series.
 
-<img src="/Sentiment_per_season_selected_main_characters.png" width="90%">
+<img src="/img/Sentiment_per_season_selected_main_characters.png" width="90%">
 <center><em>Comparison of how the sentiment of selected characters changes across seasons.</em></center>
 &nbsp;
 
 In the comparison above, Meredith's sentiment generally drops, while Darryl becomes more and more postive for every season. Again, Stanley and Angela are constantly having low scores. Dwight also has a very monotonuous mood across seasons, however, he expresses himself more positively than the two aforementioned characters. Jim is generally quite happy, but Michael tops the list when it comes to high sentiment scores, and this is despite a slight drop in Season 6. The plots below give an even better understanding of how main character's sentiment has developed across the different seasons. There is a point for every season the character appeared in the show.
 
-<img src="/Sentiment_per_season.png" width="90%">
+<img src="/img/Sentiment_per_season.png" width="90%">
 <center><em>The figure above includes plots of how the sentiment of main characters has changed over time.</em></center>
 &nbsp;
 
@@ -52,7 +52,7 @@ Thus, we have isolated the **scenes where only two characters appear** and analy
 
 The heatmap below illustrates the results. Speakers (1<sup>st</sup> character in the scene) are plotted along the x-axis, and Receivers (2<sup>nd</sup> person in the scene) are plotted along the y-axis. As an example, Dwight has a negative attitude towards Kevin (sentiment score = -0.11) whereas Kevin's attitude towards Dwight is positive (score = 0.06). Some pairs of characters never shared a scene together resulting in a blank square in the heatmap.
 
-<img src="/Two_ppl_conversation_heatmap.png" width="90%">
+<img src="/img/Two_ppl_conversation_heatmap.png" width="90%">
 <center><em>Sentiment of two people conversations based on dialogue from scenes where only two characters appear, i.e. Speakers and Receivers.</em></center>
 &nbsp;
 
