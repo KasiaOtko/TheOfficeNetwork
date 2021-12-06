@@ -25,9 +25,15 @@ theme = "introduction"
 
  [[menu.main]]
      identifier = "dialogues"
-     name    = "Analysis of text data"
+     name    = "Dialogues deep dive"
      url     = "/dialogues/"
      weight = 40
+
+ [[menu.main]]
+     identifier = "topic_modelling"
+     name    = "Topic modelling"
+     url     = "/topic_modelling/"
+     weight = 50
 
 [params]
     themeStyle                  = "light"

@@ -58,6 +58,22 @@ The heatmap below illustrates the results. Speakers (1<sup>st</sup> character in
 
 The sentiment scores displayed in the heatmap above are **highly dependent on the number of lines** the two given characters have spoken to each other. Ryan and Angela, for example, had very little conversations but the few lines Angela said to Ryan have negative sentiment resulting in a very low score in the heatmap (-0.46).
 
+## Wordclouds
+
+Now we know **how** the main characters talk to each other. It is time to get know them even better and see WHAT are they talking about :) For this purpose we calulated TF-IDF scores for every character who spoke at least 15 lines. The figure below presents wordclouds, each consisting of 15 words with the highest TF-IDF score.
+
+![Wordclouds](/img/Wordclouds.png)
+
+Not this is something! We think that everyone familiar with The Office should be able to distinguish most of the characters by their wordclouds wothout looking at the titles :D We can also see that there are indeed some important bigrams. Let's take a closer look at some of the examples:
+* [Here's](https://screenrant.com/office-andy-big-tuna-nickname-jim-why-explained/) an explanation for why Andy used "tuna" word so often. We also see "cornell" which is his alma mater and this is something he is very proud of.
+* [During one of the Christmas parties, Angela sang](https://www.youtube.com/watch?v=Wiwrs8pL1E0) a ["The Little Drummer Boy"](https://www.youtube.com/watch?v=plGj8VRTqJE) song, which is why we see "pum_pum" in her wordcloud :D Additionally, she's a cat lover and one of cats she owned and talked a lot about was named Sprinkle. 
+* Darryl is another character who sang songs - https://www.youtube.com/watch?v=i-bZSTLHJm4, https://www.youtube.com/watch?v=bV8i6oCgiAM
+* Toby and [Stanley](https://www.youtube.com/watch?v=o0Wjo3bX1n0) really like to talk about their vacations :D
+
+![Toby](/img/Toby.png)
+
+However, we also note that we are aware of the fact that in our case some of the documents and the resulting TF-IDF values were influenced by single episodes, where the supporting characters played more scenes than in an "average" episode that were focused around one theme. This is visible for example for Stanley and word "toaster", which was a theme for only one episode.
+
 ### EXTRA: Finding all "That's what she said" jokes
 
 A reoccuring joke in The Office is the *That's what she said*-joke. The line is used in response to statements that may sound sexual in nature when taken out of context. **Michael is a big fan** of this joke, in fact, out of a total of 31 times the joke appears in the series Michael spoke 21 of them! Here are some examples:
@@ -80,22 +96,6 @@ A reoccuring joke in The Office is the *That's what she said*-joke. The line is 
 >> Pam: That's what she said.
 
 </span>
-
-## Wordclouds
-
-Now we know **how** the main characters talk to each other. It is time to get know them even better and see WHAT are they talking about :) For this purpose we calulated TF-IDF scores for every character who spoke at least 15 lines. The figure below presents wordclouds, each consisting of 15 words with the highest TF-IDF score.
-
-![Wordclouds](/img/Wordclouds.png)
-
-Not this is something! We think that everyone familiar with The Office should be able to distinguish most of the characters by their wordclouds wothout looking at the titles :D We can also see that there are indeed some important bigrams. Let's take a closer look at some of the examples:
-* [Here's](https://screenrant.com/office-andy-big-tuna-nickname-jim-why-explained/) an explanation for why Andy used "tuna" word so often. We also see "cornell" which is his alma mater and this is something he is very proud of.
-* [During one of the Christmas parties, Angela sang](https://www.youtube.com/watch?v=Wiwrs8pL1E0) a ["The Little Drummer Boy"](https://www.youtube.com/watch?v=plGj8VRTqJE) song, which is why we see "pum_pum" in her wordcloud :D Additionally, she's a cat lover and one of cats she owned and talked a lot about was named Sprinkle. 
-* Darryl is another character who sang songs - https://www.youtube.com/watch?v=i-bZSTLHJm4, https://www.youtube.com/watch?v=bV8i6oCgiAM
-* Toby and [Stanley](https://www.youtube.com/watch?v=o0Wjo3bX1n0) really like to talk about their vacations :D
-
-![Toby](/img/Toby.png)
-
-However, we also note that we are aware of the fact that in our case some of the documents and the resulting TF-IDF values were influenced by single episodes, where the supporting characters played more scenes than in an "average" episode that were focused around one theme. This is visible for example for Stanley and word "toaster", which was a theme for only one episode.
 
 ## References
 
