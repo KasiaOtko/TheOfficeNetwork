@@ -65,21 +65,37 @@ A reoccuring joke in The Office is the *That's what she said*-joke. The line is 
 <span style="font-family:Courier New; font-size:1.2em;">
 
 > **Doctor: Does the skin look red and swollen?**
->> Dwight: That's what she said
+>> Dwight: That's what she said.
 
 > **Jim: No, thanks. I'm good.** 
->> Michael: That's what she said
+>> Michael: That's what she said.
 
 > **Kevin: Why did you get it so big?**
->> Michael: A, that's what she said
+>> Michael: A, that's what she said.
 
 > **Lester: And you were directly under her the entire time?**
->> Michael: That's what she said
+>> Michael: That's what she said.
 
 > **Kelly: Dwight, get out of my nook!**
->> Pam: That's what she said 
+>> Pam: That's what she said.
 
 </span>
+
+## Wordclouds
+
+Now we know **how** the main characters talk to each other. It is time to get know them even better and see WHAT are they talking about :) For this purpose we calulated TF-IDF scores for every character who spoke at least 15 lines. The figure below presents wordclouds, each consisting of 15 words with the highest TF-IDF score.
+
+![Wordclouds](/img/Wordclouds.png)
+
+Not this is something! We think that everyone familiar with The Office should be able to distinguish most of the characters by their wordclouds wothout looking at the titles :D We can also see that there are indeed some important bigrams. Let's take a closer look at some of the examples:
+* [Here's](https://screenrant.com/office-andy-big-tuna-nickname-jim-why-explained/) an explanation for why Andy used "tuna" word so often. We also see "cornell" which is his alma mater and this is something he is very proud of.
+* [During one of the Christmas parties, Angela sang](https://www.youtube.com/watch?v=Wiwrs8pL1E0) a ["The Little Drummer Boy"](https://www.youtube.com/watch?v=plGj8VRTqJE) song, which is why we see "pum_pum" in her wordcloud :D Additionally, she's a cat lover and one of cats she owned and talked a lot about was named Sprinkle. 
+* Darryl is another character who sang songs - https://www.youtube.com/watch?v=i-bZSTLHJm4, https://www.youtube.com/watch?v=bV8i6oCgiAM
+* Toby and [Stanley](https://www.youtube.com/watch?v=o0Wjo3bX1n0) really like to talk about their vacations :D
+
+![Toby](/img/Toby.png)
+
+However, we also note that we are aware of the fact that in our case some of the documents and the resulting TF-IDF values were influenced by single episodes, where the supporting characters played more scenes than in an "average" episode that were focused around one theme. This is visible for example for Stanley and word "toaster", which was a theme for only one episode.
 
 ## References
 
