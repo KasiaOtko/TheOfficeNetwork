@@ -1,0 +1,279 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+        #loadingBar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width: 1000px;
+            height: 600px;
+            background-color:rgba(200,200,200,0.8);
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            opacity:1;
+        }
+
+        #bar {
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:20px;
+            height:20px;
+            margin:auto auto auto auto;
+            border-radius:11px;
+            border:2px solid rgba(30,30,30,0.05);
+            background: rgb(0, 173, 246); /* Old browsers */
+            box-shadow: 2px 0px 4px rgba(0,0,0,0.4);
+        }
+
+        #border {
+            position:absolute;
+            top:10px;
+            left:10px;
+            width:500px;
+            height:23px;
+            margin:auto auto auto auto;
+            box-shadow: 0px 0px 4px rgba(0,0,0,0.2);
+            border-radius:10px;
+        }
+
+        #text {
+            position:absolute;
+            top:8px;
+            left:530px;
+            width:30px;
+            height:50px;
+            margin:auto auto auto auto;
+            font-size:22px;
+            color: #000000;
+        }
+
+        div.outerBorder {
+            position:relative;
+            top:400px;
+            width:600px;
+            height:44px;
+            margin:auto auto auto auto;
+            border:8px solid rgba(0,0,0,0.1);
+            background: rgb(252,252,252); /* Old browsers */
+            background: -moz-linear-gradient(top,  rgba(252,252,252,1) 0%, rgba(237,237,237,1) 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(252,252,252,1)), color-stop(100%,rgba(237,237,237,1))); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(top,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* IE10+ */
+            background: linear-gradient(to bottom,  rgba(252,252,252,1) 0%,rgba(237,237,237,1) 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
+            border-radius:72px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+        
+.theme-construction {
+  --radius: 0;
+  --baseFg: white;
+  --baseBg: black;
+  --accentFg: black;
+  --accentBg: orange;
+}
+
+select {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: #F07575; /* Fallback color if gradients are not supported */
+    background-image: url(../images/select-arrow.png), -webkit-linear-gradient(top, #E5E5E5, #F4F4F4); /* For Chrome and Safari */
+    background-image: url(../images/select-arrow.png), -moz-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Firefox (3.6 to 15) */
+    background-image: url(../images/select-arrow.png), -ms-linear-gradient(top, #E5E5E5, #F4F4F4); /* For pre-releases of Internet Explorer  10*/
+    background-image: url(../images/select-arrow.png), -o-linear-gradient(top, #E5E5E5, #F4F4F4); /* For old Opera (11.1 to 12.0) */
+    background-image: url(../images/select-arrow.png), linear-gradient(to bottom, #E5E5E5, #F4F4F4); /* Standard syntax; must be last */
+    background-position: center right;
+    background-repeat: no-repeat;
+    border: 1px solid #AAA;
+    border-radius: 2px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    color: #555;
+    font-size: inherit;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--baseFg);
+    background-color: var(--baseBg);
+    background-image: linear-gradient(var(--baseFg), var(--baseFg)),
+        linear-gradient(-135deg, transparent 50%, var(--accentBg) 50%),
+        linear-gradient(-225deg, transparent 50%, var(--accentBg) 50%),
+        linear-gradient(var(--accentBg) 42%, var(--accentFg) 42%);
+    background-size: 1px 100%, 20px 22px, 20px 22px, 20px 100%;
+}
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div align="right">
+    <select id="seasonSelect" style="width:200px" onchange="loadPage();">
+        <option value="1"> Season One </option>
+        <option selected value="2"> Season Two </option>
+        <option value="3"> Season Three </option>
+        <option value="4"> Season Four </option>
+        <option value="5"> Season Five </option>
+        <option value="6"> Season Six </option>
+        <option value="7"> Season Seven </option>
+        <option value="8"> Season Eight </option>
+        <option value="9"> Season Nine </option>
+    </select>
+</div>
+<div style="line-height:50%;">
+    <br>
+</div>
+<div id = "mynetwork"></div>
+
+<div id="loadingBar">
+    <div class="outerBorder">
+        <div id="text">0%</div>
+        <div id="border">
+            <div id="bar"></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    function loadPage()
+{
+     var e = document.getElementById("seasonSelect");
+    var seasonTo = e.value;
+    window.location="season" + seasonTo + ".html";
+
+}
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "Michael", "label": "Michael", "shape": "dot", "size": 61.333333333333336}, {"font": {"color": "white"}, "id": "Jim", "label": "Jim", "shape": "dot", "size": 44}, {"font": {"color": "white"}, "id": "Dwight", "label": "Dwight", "shape": "dot", "size": 39.333333333333336}, {"font": {"color": "white"}, "id": "Stanley", "label": "Stanley", "shape": "dot", "size": 22}, {"font": {"color": "white"}, "id": "Pam", "label": "Pam", "shape": "dot", "size": 46}, {"font": {"color": "white"}, "id": "Oscar", "label": "Oscar", "shape": "dot", "size": 30}, {"font": {"color": "white"}, "id": "Jan", "label": "Jan", "shape": "dot", "size": 22}, {"font": {"color": "white"}, "id": "Roy", "label": "", "shape": "dot", "size": 27}, {"font": {"color": "white"}, "id": "Phyllis", "label": "Phyllis", "shape": "dot", "size": 23}, {"font": {"color": "white"}, "id": "Kevin", "label": "Kevin", "shape": "dot", "size": 34}, {"font": {"color": "white"}, "id": "Angela", "label": "Angela", "shape": "dot", "size": 21}, {"font": {"color": "white"}, "id": "Kelly", "label": "", "shape": "dot", "size": 16}, {"font": {"color": "white"}, "id": "Other Guy at Bar", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Guy at bar", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Guy At Bar", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Everybody", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Pam and Jim", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Todd Packer", "label": "", "shape": "dot", "size": 11}, {"font": {"color": "white"}, "id": "Toby", "label": "Toby", "shape": "dot", "size": 17}, {"font": {"color": "white"}, "id": "Warehouse guy", "label": "", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": "Darryl", "label": "Darryl", "shape": "dot", "size": 26}, {"font": {"color": "white"}, "id": "Warehouse Guy", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Meredith", "label": "Meredith", "shape": "dot", "size": 17}, {"font": {"color": "white"}, "id": "Video", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Actor", "label": "", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Man in Video", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Redheaded Actress", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Mr. O\u0027Malley", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Albiny", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Ryan", "label": "Ryan", "shape": "dot", "size": 25}, {"font": {"color": "white"}, "id": "Bill", "label": "", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Carol", "label": "", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": "Dwight and Michael", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Sherri", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Creed", "label": "", "shape": "dot", "size": 20}, {"font": {"color": "white"}, "id": "Devon", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Children", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Kid", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Ira", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Christian", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Hostess", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Michael and Christian", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Sadiq (IT guy)", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Improv Teacher", "label": "", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": "Merybeth", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Girl acting Pregnant", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Actress", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Michael and Jim", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "All", "label": "", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Liquor Store Clerk", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Phyllis, Meredith, Michael, Kevin", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Bob Vance", "label": "", "shape": "dot", "size": 9}, {"font": {"color": "white"}, "id": "Captain Jack", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Brenda", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Jim and Pam", "label": "", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": "Billy Merchant", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Doctor", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Lab Tech", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Dana", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Hooter\u0027s Girls", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Pam and others", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Michael and Dwight", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Ed", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Packer", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Todd", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Lonny", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Madge", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Group chant", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Guy", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "All the Men", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Craig", "label": "", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Josh", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "David", "label": "", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Speaker", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Jim and Dwight", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Melissa", "label": "", "shape": "dot", "size": 17}, {"font": {"color": "white"}, "id": "Sasha", "label": "", "shape": "dot", "size": 17}, {"font": {"color": "white"}, "id": "The Kids", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Jake", "label": "", "shape": "dot", "size": 17}, {"font": {"color": "white"}, "id": "Abby", "label": "", "shape": "dot", "size": 18}, {"font": {"color": "white"}, "id": "Kids", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Miss Trudy", "label": "", "shape": "dot", "size": 13}, {"font": {"color": "white"}, "id": "Young Michael", "label": "", "shape": "dot", "size": 13}, {"font": {"color": "white"}, "id": "Chet", "label": "", "shape": "dot", "size": 13}, {"font": {"color": "white"}, "id": "Edward R. Meow", "label": "", "shape": "dot", "size": 13}, {"font": {"color": "white"}, "id": "Delivery Woman", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Office Staff", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Hank", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Anglea", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Photographer", "label": "", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": "Billy\u0027s Girlfriend", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Billy", "label": "", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": "Dealer", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Employee", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Everyone", "label": "", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Crowd", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "song", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Song", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Katy", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Mark", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Store Employee", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Female worker", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Kevin \u0026 Oscar", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Gil", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Delivery Boy", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Linda", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "I.D. Photographer", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Bob", "label": "", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": "Pam\u0027s mom", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Darryl and Katy", "label": "", "shape": "dot", "size": 3}, {"font": {"color": "white"}, "id": "Jim\u0027s voicemail", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Delivery man", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Dan", "label": "", "shape": "dot", "size": 3}]);
+        edges = new vis.DataSet([{"from": "Michael", "to": "Jim", "weight": 72}, {"from": "Michael", "to": "Dwight", "weight": 143}, {"from": "Michael", "to": "Stanley", "weight": 27}, {"from": "Michael", "to": "Pam", "weight": 76}, {"from": "Michael", "to": "Oscar", "weight": 23}, {"from": "Michael", "to": "Jan", "weight": 42}, {"from": "Michael", "to": "Roy", "weight": 12}, {"from": "Michael", "to": "Phyllis", "weight": 23}, {"from": "Michael", "to": "Kevin", "weight": 33}, {"from": "Michael", "to": "Angela", "weight": 27}, {"from": "Michael", "to": "Kelly", "weight": 12}, {"from": "Michael", "to": "Other Guy at Bar", "weight": 1}, {"from": "Michael", "to": "Guy at bar", "weight": 1}, {"from": "Michael", "to": "Guy At Bar", "weight": 1}, {"from": "Michael", "to": "Everybody", "weight": 1}, {"from": "Michael", "to": "Pam and Jim", "weight": 1}, {"from": "Michael", "to": "Todd Packer", "weight": 7}, {"from": "Michael", "to": "Toby", "weight": 29}, {"from": "Michael", "to": "Warehouse guy", "weight": 2}, {"from": "Michael", "to": "Darryl", "weight": 16}, {"from": "Michael", "to": "Warehouse Guy", "weight": 1}, {"from": "Michael", "to": "Meredith", "weight": 12}, {"from": "Michael", "to": "Video", "weight": 1}, {"from": "Michael", "to": "Actor", "weight": 2}, {"from": "Michael", "to": "Man in Video", "weight": 1}, {"from": "Michael", "to": "Redheaded Actress", "weight": 1}, {"from": "Michael", "to": "Mr. O\u0027Malley", "weight": 1}, {"from": "Michael", "to": "Albiny", "weight": 2}, {"from": "Michael", "to": "Ryan", "weight": 38}, {"from": "Michael", "to": "Bill", "weight": 4}, {"from": "Michael", "to": "Carol", "weight": 13}, {"from": "Michael", "to": "Dwight and Michael", "weight": 1}, {"from": "Michael", "to": "Sherri", "weight": 1}, {"from": "Michael", "to": "Creed", "weight": 14}, {"from": "Michael", "to": "Devon", "weight": 2}, {"from": "Michael", "to": "Children", "weight": 1}, {"from": "Michael", "to": "Kid", "weight": 1}, {"from": "Michael", "to": "Ira", "weight": 2}, {"from": "Michael", "to": "Christian", "weight": 7}, {"from": "Michael", "to": "Hostess", "weight": 1}, {"from": "Michael", "to": "Michael and Christian", "weight": 2}, {"from": "Michael", "to": "Sadiq (IT guy)", "weight": 2}, {"from": "Michael", "to": "Improv Teacher", "weight": 3}, {"from": "Michael", "to": "Merybeth", "weight": 3}, {"from": "Michael", "to": "Girl acting Pregnant", "weight": 1}, {"from": "Michael", "to": "Actress", "weight": 1}, {"from": "Michael", "to": "Michael and Jim", "weight": 1}, {"from": "Michael", "to": "All", "weight": 1}, {"from": "Michael", "to": "Liquor Store Clerk", "weight": 1}, {"from": "Michael", "to": "Phyllis, Meredith, Michael, Kevin", "weight": 1}, {"from": "Michael", "to": "Bob Vance", "weight": 1}, {"from": "Michael", "to": "Captain Jack", "weight": 8}, {"from": "Michael", "to": "Brenda", "weight": 2}, {"from": "Michael", "to": "Jim and Pam", "weight": 1}, {"from": "Michael", "to": "Billy Merchant", "weight": 2}, {"from": "Michael", "to": "Doctor", "weight": 1}, {"from": "Michael", "to": "Lab Tech", "weight": 1}, {"from": "Michael", "to": "Dana", "weight": 2}, {"from": "Michael", "to": "Hooter\u0027s Girls", "weight": 1}, {"from": "Michael", "to": "Pam and others", "weight": 1}, {"from": "Michael", "to": "Michael and Dwight", "weight": 2}, {"from": "Michael", "to": "Ed", "weight": 1}, {"from": "Michael", "to": "Packer", "weight": 1}, {"from": "Michael", "to": "Todd", "weight": 1}, {"from": "Michael", "to": "Lonny", "weight": 3}, {"from": "Michael", "to": "Madge", "weight": 1}, {"from": "Michael", "to": "Group chant", "weight": 1}, {"from": "Michael", "to": "Guy", "weight": 1}, {"from": "Michael", "to": "All the Men", "weight": 1}, {"from": "Michael", "to": "Craig", "weight": 2}, {"from": "Michael", "to": "Josh", "weight": 4}, {"from": "Michael", "to": "David", "weight": 4}, {"from": "Michael", "to": "Speaker", "weight": 1}, {"from": "Michael", "to": "Jim and Dwight", "weight": 1}, {"from": "Michael", "to": "Melissa", "weight": 4}, {"from": "Michael", "to": "Sasha", "weight": 3}, {"from": "Michael", "to": "The Kids", "weight": 1}, {"from": "Michael", "to": "Jake", "weight": 4}, {"from": "Michael", "to": "Abby", "weight": 4}, {"from": "Michael", "to": "Kids", "weight": 2}, {"from": "Michael", "to": "Miss Trudy", "weight": 1}, {"from": "Michael", "to": "Young Michael", "weight": 1}, {"from": "Michael", "to": "Chet", "weight": 1}, {"from": "Michael", "to": "Edward R. Meow", "weight": 1}, {"from": "Michael", "to": "Delivery Woman", "weight": 1}, {"from": "Michael", "to": "Office Staff", "weight": 1}, {"from": "Michael", "to": "Hank", "weight": 1}, {"from": "Michael", "to": "Anglea", "weight": 1}, {"from": "Michael", "to": "Photographer", "weight": 2}, {"from": "Michael", "to": "Billy\u0027s Girlfriend", "weight": 1}, {"from": "Michael", "to": "Billy", "weight": 1}, {"from": "Michael", "to": "Dealer", "weight": 3}, {"from": "Jim", "to": "Pam", "weight": 108}, {"from": "Jim", "to": "Dwight", "weight": 69}, {"from": "Jim", "to": "Ryan", "weight": 24}, {"from": "Jim", "to": "Everybody", "weight": 1}, {"from": "Jim", "to": "Pam and Jim", "weight": 1}, {"from": "Jim", "to": "Employee", "weight": 1}, {"from": "Jim", "to": "Todd Packer", "weight": 2}, {"from": "Jim", "to": "Jan", "weight": 3}, {"from": "Jim", "to": "Kevin", "weight": 16}, {"from": "Jim", "to": "Oscar", "weight": 18}, {"from": "Jim", "to": "Stanley", "weight": 14}, {"from": "Jim", "to": "Phyllis", "weight": 15}, {"from": "Jim", "to": "Meredith", "weight": 4}, {"from": "Jim", "to": "Angela", "weight": 10}, {"from": "Jim", "to": "Everyone", "weight": 2}, {"from": "Jim", "to": "Crowd", "weight": 1}, {"from": "Jim", "to": "song", "weight": 1}, {"from": "Jim", "to": "Roy", "weight": 10}, {"from": "Jim", "to": "Song", "weight": 1}, {"from": "Jim", "to": "Katy", "weight": 4}, {"from": "Jim", "to": "Toby", "weight": 6}, {"from": "Jim", "to": "Kelly", "weight": 14}, {"from": "Jim", "to": "Mark", "weight": 1}, {"from": "Jim", "to": "Creed", "weight": 5}, {"from": "Jim", "to": "Darryl", "weight": 3}, {"from": "Jim", "to": "Captain Jack", "weight": 1}, {"from": "Jim", "to": "Jim and Pam", "weight": 1}, {"from": "Jim", "to": "Billy Merchant", "weight": 2}, {"from": "Jim", "to": "Dana", "weight": 2}, {"from": "Jim", "to": "Hooter\u0027s Girls", "weight": 1}, {"from": "Jim", "to": "Jim and Dwight", "weight": 1}, {"from": "Jim", "to": "Abby", "weight": 3}, {"from": "Jim", "to": "Jake", "weight": 2}, {"from": "Jim", "to": "Miss Trudy", "weight": 1}, {"from": "Jim", "to": "Young Michael", "weight": 1}, {"from": "Jim", "to": "Sasha", "weight": 1}, {"from": "Jim", "to": "Melissa", "weight": 1}, {"from": "Jim", "to": "Chet", "weight": 1}, {"from": "Jim", "to": "Edward R. Meow", "weight": 1}, {"from": "Jim", "to": "Michael and Dwight", "weight": 1}, {"from": "Jim", "to": "Store Employee", "weight": 1}, {"from": "Jim", "to": "Photographer", "weight": 2}, {"from": "Jim", "to": "Female worker", "weight": 1}, {"from": "Dwight", "to": "Pam", "weight": 45}, {"from": "Dwight", "to": "Kelly", "weight": 11}, {"from": "Dwight", "to": "Phyllis", "weight": 27}, {"from": "Dwight", "to": "Employee", "weight": 1}, {"from": "Dwight", "to": "Todd Packer", "weight": 2}, {"from": "Dwight", "to": "Toby", "weight": 14}, {"from": "Dwight", "to": "Angela", "weight": 31}, {"from": "Dwight", "to": "Kevin", "weight": 19}, {"from": "Dwight", "to": "Stanley", "weight": 16}, {"from": "Dwight", "to": "Meredith", "weight": 6}, {"from": "Dwight", "to": "Bill", "weight": 2}, {"from": "Dwight", "to": "Carol", "weight": 6}, {"from": "Dwight", "to": "Crowd", "weight": 2}, {"from": "Dwight", "to": "Oscar", "weight": 22}, {"from": "Dwight", "to": "Ryan", "weight": 20}, {"from": "Dwight", "to": "Roy", "weight": 6}, {"from": "Dwight", "to": "Song", "weight": 1}, {"from": "Dwight", "to": "Dwight and Michael", "weight": 2}, {"from": "Dwight", "to": "Ira", "weight": 1}, {"from": "Dwight", "to": "Jan", "weight": 6}, {"from": "Dwight", "to": "Everyone", "weight": 1}, {"from": "Dwight", "to": "Creed", "weight": 7}, {"from": "Dwight", "to": "Mark", "weight": 1}, {"from": "Dwight", "to": "Kevin \u0026 Oscar", "weight": 1}, {"from": "Dwight", "to": "Darryl", "weight": 5}, {"from": "Dwight", "to": "All", "weight": 1}, {"from": "Dwight", "to": "Bob Vance", "weight": 2}, {"from": "Dwight", "to": "Captain Jack", "weight": 4}, {"from": "Dwight", "to": "Brenda", "weight": 2}, {"from": "Dwight", "to": "Jim and Pam", "weight": 1}, {"from": "Dwight", "to": "Doctor", "weight": 1}, {"from": "Dwight", "to": "Lab Tech", "weight": 1}, {"from": "Dwight", "to": "Gil", "weight": 1}, {"from": "Dwight", "to": "Michael and Dwight", "weight": 2}, {"from": "Dwight", "to": "Group chant", "weight": 1}, {"from": "Dwight", "to": "Lonny", "weight": 1}, {"from": "Dwight", "to": "Guy", "weight": 1}, {"from": "Dwight", "to": "Speaker", "weight": 1}, {"from": "Dwight", "to": "Jake", "weight": 5}, {"from": "Dwight", "to": "The Kids", "weight": 1}, {"from": "Dwight", "to": "Sasha", "weight": 2}, {"from": "Dwight", "to": "Melissa", "weight": 2}, {"from": "Dwight", "to": "Abby", "weight": 3}, {"from": "Dwight", "to": "Kids", "weight": 1}, {"from": "Dwight", "to": "Miss Trudy", "weight": 1}, {"from": "Dwight", "to": "Young Michael", "weight": 1}, {"from": "Dwight", "to": "Chet", "weight": 1}, {"from": "Dwight", "to": "Edward R. Meow", "weight": 1}, {"from": "Dwight", "to": "Delivery Boy", "weight": 1}, {"from": "Dwight", "to": "Office Staff", "weight": 1}, {"from": "Dwight", "to": "Linda", "weight": 1}, {"from": "Dwight", "to": "Hank", "weight": 1}, {"from": "Dwight", "to": "I.D. Photographer", "weight": 1}, {"from": "Dwight", "to": "Photographer", "weight": 3}, {"from": "Dwight", "to": "Billy", "weight": 1}, {"from": "Dwight", "to": "Dealer", "weight": 1}, {"from": "Dwight", "to": "Bob", "weight": 1}, {"from": "Stanley", "to": "Pam", "weight": 14}, {"from": "Stanley", "to": "Kevin", "weight": 6}, {"from": "Stanley", "to": "Phyllis", "weight": 8}, {"from": "Stanley", "to": "Toby", "weight": 3}, {"from": "Stanley", "to": "Angela", "weight": 7}, {"from": "Stanley", "to": "Meredith", "weight": 2}, {"from": "Stanley", "to": "Crowd", "weight": 1}, {"from": "Stanley", "to": "song", "weight": 1}, {"from": "Stanley", "to": "Oscar", "weight": 7}, {"from": "Stanley", "to": "Ryan", "weight": 6}, {"from": "Stanley", "to": "Roy", "weight": 1}, {"from": "Stanley", "to": "Kelly", "weight": 4}, {"from": "Stanley", "to": "All", "weight": 1}, {"from": "Stanley", "to": "Bob Vance", "weight": 1}, {"from": "Stanley", "to": "Creed", "weight": 2}, {"from": "Stanley", "to": "Billy Merchant", "weight": 1}, {"from": "Stanley", "to": "Melissa", "weight": 1}, {"from": "Stanley", "to": "Photographer", "weight": 1}, {"from": "Stanley", "to": "Dealer", "weight": 1}, {"from": "Pam", "to": "Oscar", "weight": 16}, {"from": "Pam", "to": "Kelly", "weight": 14}, {"from": "Pam", "to": "Phyllis", "weight": 22}, {"from": "Pam", "to": "Darryl", "weight": 4}, {"from": "Pam", "to": "Roy", "weight": 15}, {"from": "Pam", "to": "Everybody", "weight": 1}, {"from": "Pam", "to": "Pam and Jim", "weight": 1}, {"from": "Pam", "to": "Employee", "weight": 1}, {"from": "Pam", "to": "Kevin", "weight": 18}, {"from": "Pam", "to": "Toby", "weight": 9}, {"from": "Pam", "to": "Angela", "weight": 19}, {"from": "Pam", "to": "Meredith", "weight": 6}, {"from": "Pam", "to": "Todd Packer", "weight": 1}, {"from": "Pam", "to": "Pam\u0027s mom", "weight": 3}, {"from": "Pam", "to": "Song", "weight": 1}, {"from": "Pam", "to": "Ryan", "weight": 9}, {"from": "Pam", "to": "Jan", "weight": 8}, {"from": "Pam", "to": "Mark", "weight": 1}, {"from": "Pam", "to": "All", "weight": 1}, {"from": "Pam", "to": "Darryl and Katy", "weight": 1}, {"from": "Pam", "to": "Katy", "weight": 1}, {"from": "Pam", "to": "Captain Jack", "weight": 1}, {"from": "Pam", "to": "Jim and Pam", "weight": 1}, {"from": "Pam", "to": "Creed", "weight": 3}, {"from": "Pam", "to": "Billy Merchant", "weight": 1}, {"from": "Pam", "to": "Michael and Dwight", "weight": 2}, {"from": "Pam", "to": "Jim\u0027s voicemail", "weight": 1}, {"from": "Pam", "to": "Delivery man", "weight": 3}, {"from": "Pam", "to": "Jim and Dwight", "weight": 1}, {"from": "Pam", "to": "Abby", "weight": 3}, {"from": "Pam", "to": "Miss Trudy", "weight": 1}, {"from": "Pam", "to": "Young Michael", "weight": 1}, {"from": "Pam", "to": "Jake", "weight": 2}, {"from": "Pam", "to": "Sasha", "weight": 1}, {"from": "Pam", "to": "Melissa", "weight": 2}, {"from": "Pam", "to": "Chet", "weight": 1}, {"from": "Pam", "to": "Edward R. Meow", "weight": 1}, {"from": "Pam", "to": "Delivery Woman", "weight": 1}, {"from": "Pam", "to": "Store Employee", "weight": 1}, {"from": "Pam", "to": "Anglea", "weight": 1}, {"from": "Pam", "to": "Photographer", "weight": 1}, {"from": "Pam", "to": "Carol", "weight": 2}, {"from": "Oscar", "to": "Kevin", "weight": 13}, {"from": "Oscar", "to": "Meredith", "weight": 3}, {"from": "Oscar", "to": "Everyone", "weight": 1}, {"from": "Oscar", "to": "Ryan", "weight": 5}, {"from": "Oscar", "to": "Angela", "weight": 16}, {"from": "Oscar", "to": "song", "weight": 1}, {"from": "Oscar", "to": "Toby", "weight": 4}, {"from": "Oscar", "to": "Kelly", "weight": 4}, {"from": "Oscar", "to": "Creed", "weight": 2}, {"from": "Oscar", "to": "Bob Vance", "weight": 2}, {"from": "Oscar", "to": "Gil", "weight": 1}, {"from": "Oscar", "to": "Michael and Dwight", "weight": 1}, {"from": "Oscar", "to": "Phyllis", "weight": 4}, {"from": "Oscar", "to": "Delivery man", "weight": 1}, {"from": "Oscar", "to": "Miss Trudy", "weight": 1}, {"from": "Oscar", "to": "Young Michael", "weight": 1}, {"from": "Oscar", "to": "Jake", "weight": 1}, {"from": "Oscar", "to": "Sasha", "weight": 1}, {"from": "Oscar", "to": "Melissa", "weight": 1}, {"from": "Oscar", "to": "Abby", "weight": 1}, {"from": "Oscar", "to": "Darryl", "weight": 1}, {"from": "Oscar", "to": "Chet", "weight": 1}, {"from": "Oscar", "to": "Edward R. Meow", "weight": 1}, {"from": "Oscar", "to": "Billy", "weight": 1}, {"from": "Oscar", "to": "Bob", "weight": 1}, {"from": "Jan", "to": "Kelly", "weight": 6}, {"from": "Jan", "to": "Phyllis", "weight": 5}, {"from": "Jan", "to": "Toby", "weight": 2}, {"from": "Jan", "to": "Todd Packer", "weight": 1}, {"from": "Jan", "to": "Albiny", "weight": 1}, {"from": "Jan", "to": "Christian", "weight": 7}, {"from": "Jan", "to": "Hostess", "weight": 1}, {"from": "Jan", "to": "Michael and Christian", "weight": 2}, {"from": "Jan", "to": "Kevin", "weight": 1}, {"from": "Jan", "to": "Angela", "weight": 3}, {"from": "Jan", "to": "Creed", "weight": 1}, {"from": "Jan", "to": "Meredith", "weight": 4}, {"from": "Jan", "to": "David", "weight": 3}, {"from": "Jan", "to": "Josh", "weight": 1}, {"from": "Jan", "to": "Dan", "weight": 1}, {"from": "Jan", "to": "Craig", "weight": 1}, {"from": "Jan", "to": "Carol", "weight": 5}, {"from": "Jan", "to": "Dealer", "weight": 1}, {"from": "Roy", "to": "Darryl", "weight": 9}, {"from": "Roy", "to": "Warehouse guy", "weight": 2}, {"from": "Roy", "to": "Warehouse Guy", "weight": 1}, {"from": "Roy", "to": "Video", "weight": 1}, {"from": "Roy", "to": "Actor", "weight": 1}, {"from": "Roy", "to": "Man in Video", "weight": 1}, {"from": "Roy", "to": "Redheaded Actress", "weight": 1}, {"from": "Roy", "to": "Pam\u0027s mom", "weight": 1}, {"from": "Roy", "to": "Song", "weight": 1}, {"from": "Roy", "to": "Ryan", "weight": 2}, {"from": "Roy", "to": "Angela", "weight": 1}, {"from": "Roy", "to": "Kevin", "weight": 4}, {"from": "Roy", "to": "Katy", "weight": 1}, {"from": "Roy", "to": "Darryl and Katy", "weight": 1}, {"from": "Roy", "to": "Captain Jack", "weight": 2}, {"from": "Roy", "to": "Packer", "weight": 1}, {"from": "Roy", "to": "Todd Packer", "weight": 1}, {"from": "Roy", "to": "Todd", "weight": 1}, {"from": "Roy", "to": "Lonny", "weight": 2}, {"from": "Roy", "to": "Group chant", "weight": 1}, {"from": "Roy", "to": "Guy", "weight": 1}, {"from": "Roy", "to": "Carol", "weight": 1}, {"from": "Phyllis", "to": "Kelly", "weight": 9}, {"from": "Phyllis", "to": "Toby", "weight": 3}, {"from": "Phyllis", "to": "Angela", "weight": 17}, {"from": "Phyllis", "to": "Kevin", "weight": 7}, {"from": "Phyllis", "to": "Meredith", "weight": 6}, {"from": "Phyllis", "to": "Todd Packer", "weight": 1}, {"from": "Phyllis", "to": "Everyone", "weight": 1}, {"from": "Phyllis", "to": "Creed", "weight": 4}, {"from": "Phyllis", "to": "All", "weight": 1}, {"from": "Phyllis", "to": "Ryan", "weight": 2}, {"from": "Phyllis", "to": "Bob Vance", "weight": 2}, {"from": "Phyllis", "to": "Darryl", "weight": 2}, {"from": "Phyllis", "to": "Jim and Pam", "weight": 1}, {"from": "Phyllis", "to": "I.D. Photographer", "weight": 1}, {"from": "Phyllis", "to": "Photographer", "weight": 1}, {"from": "Phyllis", "to": "Bob", "weight": 1}, {"from": "Kevin", "to": "Kelly", "weight": 2}, {"from": "Kevin", "to": "Toby", "weight": 5}, {"from": "Kevin", "to": "Angela", "weight": 15}, {"from": "Kevin", "to": "Meredith", "weight": 3}, {"from": "Kevin", "to": "Todd Packer", "weight": 1}, {"from": "Kevin", "to": "song", "weight": 1}, {"from": "Kevin", "to": "Ryan", "weight": 6}, {"from": "Kevin", "to": "Ira", "weight": 1}, {"from": "Kevin", "to": "Kevin \u0026 Oscar", "weight": 1}, {"from": "Kevin", "to": "Bob Vance", "weight": 3}, {"from": "Kevin", "to": "Jim and Pam", "weight": 1}, {"from": "Kevin", "to": "Billy Merchant", "weight": 1}, {"from": "Kevin", "to": "Creed", "weight": 2}, {"from": "Kevin", "to": "Darryl", "weight": 2}, {"from": "Kevin", "to": "Group chant", "weight": 1}, {"from": "Kevin", "to": "Lonny", "weight": 1}, {"from": "Kevin", "to": "Guy", "weight": 1}, {"from": "Kevin", "to": "Delivery man", "weight": 2}, {"from": "Kevin", "to": "Michael and Dwight", "weight": 1}, {"from": "Kevin", "to": "Abby", "weight": 1}, {"from": "Kevin", "to": "Office Staff", "weight": 1}, {"from": "Kevin", "to": "Carol", "weight": 1}, {"from": "Kevin", "to": "Linda", "weight": 1}, {"from": "Kevin", "to": "Billy", "weight": 1}, {"from": "Kevin", "to": "Bob", "weight": 1}, {"from": "Angela", "to": "Kelly", "weight": 6}, {"from": "Angela", "to": "Ryan", "weight": 3}, {"from": "Angela", "to": "Toby", "weight": 8}, {"from": "Angela", "to": "Meredith", "weight": 4}, {"from": "Angela", "to": "Devon", "weight": 1}, {"from": "Angela", "to": "Creed", "weight": 1}, {"from": "Angela", "to": "Delivery man", "weight": 1}, {"from": "Angela", "to": "Sasha", "weight": 1}, {"from": "Angela", "to": "Office Staff", "weight": 1}, {"from": "Angela", "to": "Photographer", "weight": 1}, {"from": "Angela", "to": "Billy", "weight": 1}, {"from": "Kelly", "to": "Meredith", "weight": 5}, {"from": "Kelly", "to": "Toby", "weight": 7}, {"from": "Kelly", "to": "Ryan", "weight": 9}, {"from": "Kelly", "to": "Creed", "weight": 2}, {"from": "Kelly", "to": "Billy Merchant", "weight": 1}, {"from": "Kelly", "to": "Sasha", "weight": 1}, {"from": "Other Guy at Bar", "to": "Guy at bar", "weight": 1}, {"from": "Everybody", "to": "Pam and Jim", "weight": 1}, {"from": "Todd Packer", "to": "Ryan", "weight": 1}, {"from": "Todd Packer", "to": "Packer", "weight": 1}, {"from": "Todd Packer", "to": "Todd", "weight": 1}, {"from": "Toby", "to": "Ryan", "weight": 4}, {"from": "Toby", "to": "Meredith", "weight": 3}, {"from": "Toby", "to": "Creed", "weight": 4}, {"from": "Toby", "to": "Pam and others", "weight": 1}, {"from": "Toby", "to": "Sasha", "weight": 1}, {"from": "Toby", "to": "Dealer", "weight": 1}, {"from": "Warehouse guy", "to": "Darryl", "weight": 2}, {"from": "Warehouse guy", "to": "Warehouse Guy", "weight": 1}, {"from": "Warehouse guy", "to": "Video", "weight": 1}, {"from": "Warehouse guy", "to": "Actor", "weight": 1}, {"from": "Warehouse guy", "to": "Man in Video", "weight": 1}, {"from": "Warehouse guy", "to": "Redheaded Actress", "weight": 1}, {"from": "Darryl", "to": "Warehouse Guy", "weight": 1}, {"from": "Darryl", "to": "Video", "weight": 1}, {"from": "Darryl", "to": "Actor", "weight": 1}, {"from": "Darryl", "to": "Man in Video", "weight": 1}, {"from": "Darryl", "to": "Redheaded Actress", "weight": 1}, {"from": "Darryl", "to": "Darryl and Katy", "weight": 1}, {"from": "Darryl", "to": "Lonny", "weight": 3}, {"from": "Darryl", "to": "Group chant", "weight": 1}, {"from": "Darryl", "to": "Guy", "weight": 1}, {"from": "Darryl", "to": "Miss Trudy", "weight": 1}, {"from": "Darryl", "to": "Young Michael", "weight": 1}, {"from": "Darryl", "to": "Jake", "weight": 1}, {"from": "Darryl", "to": "Sasha", "weight": 1}, {"from": "Darryl", "to": "Melissa", "weight": 1}, {"from": "Darryl", "to": "Abby", "weight": 1}, {"from": "Darryl", "to": "Chet", "weight": 1}, {"from": "Darryl", "to": "Edward R. Meow", "weight": 1}, {"from": "Meredith", "to": "Ryan", "weight": 2}, {"from": "Meredith", "to": "Bob Vance", "weight": 1}, {"from": "Meredith", "to": "Captain Jack", "weight": 2}, {"from": "Meredith", "to": "Brenda", "weight": 1}, {"from": "Meredith", "to": "Dealer", "weight": 1}, {"from": "Video", "to": "Actor", "weight": 1}, {"from": "Video", "to": "Man in Video", "weight": 1}, {"from": "Video", "to": "Redheaded Actress", "weight": 1}, {"from": "Actor", "to": "Man in Video", "weight": 1}, {"from": "Actor", "to": "Redheaded Actress", "weight": 1}, {"from": "Actor", "to": "Girl acting Pregnant", "weight": 1}, {"from": "Actor", "to": "Actress", "weight": 1}, {"from": "Actor", "to": "Improv Teacher", "weight": 1}, {"from": "Man in Video", "to": "Redheaded Actress", "weight": 1}, {"from": "Ryan", "to": "Everyone", "weight": 1}, {"from": "Ryan", "to": "Mark", "weight": 1}, {"from": "Ryan", "to": "Bob Vance", "weight": 1}, {"from": "Ryan", "to": "Phyllis, Meredith, Michael, Kevin", "weight": 1}, {"from": "Ryan", "to": "Billy Merchant", "weight": 1}, {"from": "Ryan", "to": "Creed", "weight": 2}, {"from": "Ryan", "to": "Melissa", "weight": 2}, {"from": "Ryan", "to": "Jake", "weight": 1}, {"from": "Ryan", "to": "Abby", "weight": 1}, {"from": "Ryan", "to": "Kids", "weight": 1}, {"from": "Ryan", "to": "Linda", "weight": 1}, {"from": "Bill", "to": "Carol", "weight": 2}, {"from": "Bill", "to": "Improv Teacher", "weight": 1}, {"from": "Bill", "to": "Merybeth", "weight": 1}, {"from": "Carol", "to": "Dealer", "weight": 1}, {"from": "Creed", "to": "Pam and others", "weight": 1}, {"from": "Creed", "to": "Jake", "weight": 1}, {"from": "Creed", "to": "Melissa", "weight": 1}, {"from": "Creed", "to": "Abby", "weight": 1}, {"from": "Creed", "to": "Kids", "weight": 1}, {"from": "Creed", "to": "Photographer", "weight": 1}, {"from": "Creed", "to": "Bob", "weight": 1}, {"from": "Children", "to": "Kid", "weight": 1}, {"from": "Christian", "to": "Hostess", "weight": 1}, {"from": "Christian", "to": "Michael and Christian", "weight": 2}, {"from": "Improv Teacher", "to": "Merybeth", "weight": 1}, {"from": "Improv Teacher", "to": "Girl acting Pregnant", "weight": 1}, {"from": "Improv Teacher", "to": "Actress", "weight": 1}, {"from": "Girl acting Pregnant", "to": "Actress", "weight": 1}, {"from": "Bob Vance", "to": "Bob", "weight": 1}, {"from": "Captain Jack", "to": "Brenda", "weight": 2}, {"from": "Dana", "to": "Hooter\u0027s Girls", "weight": 1}, {"from": "Michael and Dwight", "to": "Abby", "weight": 1}, {"from": "Packer", "to": "Todd", "weight": 1}, {"from": "Lonny", "to": "Group chant", "weight": 1}, {"from": "Lonny", "to": "Guy", "weight": 1}, {"from": "Group chant", "to": "Guy", "weight": 1}, {"from": "Craig", "to": "Josh", "weight": 2}, {"from": "Craig", "to": "Dan", "weight": 1}, {"from": "Craig", "to": "David", "weight": 1}, {"from": "Josh", "to": "David", "weight": 2}, {"from": "David", "to": "Dan", "weight": 1}, {"from": "Melissa", "to": "Jake", "weight": 3}, {"from": "Melissa", "to": "Abby", "weight": 3}, {"from": "Melissa", "to": "Kids", "weight": 2}, {"from": "Melissa", "to": "Miss Trudy", "weight": 1}, {"from": "Melissa", "to": "Young Michael", "weight": 1}, {"from": "Melissa", "to": "Sasha", "weight": 1}, {"from": "Melissa", "to": "Chet", "weight": 1}, {"from": "Melissa", "to": "Edward R. Meow", "weight": 1}, {"from": "Sasha", "to": "The Kids", "weight": 1}, {"from": "Sasha", "to": "Jake", "weight": 2}, {"from": "Sasha", "to": "Miss Trudy", "weight": 1}, {"from": "Sasha", "to": "Young Michael", "weight": 1}, {"from": "Sasha", "to": "Abby", "weight": 1}, {"from": "Sasha", "to": "Chet", "weight": 1}, {"from": "Sasha", "to": "Edward R. Meow", "weight": 1}, {"from": "The Kids", "to": "Jake", "weight": 1}, {"from": "Jake", "to": "Abby", "weight": 3}, {"from": "Jake", "to": "Kids", "weight": 2}, {"from": "Jake", "to": "Miss Trudy", "weight": 1}, {"from": "Jake", "to": "Young Michael", "weight": 1}, {"from": "Jake", "to": "Chet", "weight": 1}, {"from": "Jake", "to": "Edward R. Meow", "weight": 1}, {"from": "Abby", "to": "Kids", "weight": 2}, {"from": "Abby", "to": "Miss Trudy", "weight": 1}, {"from": "Abby", "to": "Young Michael", "weight": 1}, {"from": "Abby", "to": "Chet", "weight": 1}, {"from": "Abby", "to": "Edward R. Meow", "weight": 1}, {"from": "Miss Trudy", "to": "Young Michael", "weight": 1}, {"from": "Miss Trudy", "to": "Chet", "weight": 1}, {"from": "Miss Trudy", "to": "Edward R. Meow", "weight": 1}, {"from": "Young Michael", "to": "Chet", "weight": 1}, {"from": "Young Michael", "to": "Edward R. Meow", "weight": 1}, {"from": "Chet", "to": "Edward R. Meow", "weight": 1}, {"from": "Billy\u0027s Girlfriend", "to": "Billy", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -80,
+            "springConstant": 0.08,
+            "springLength": 50
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+        network.on("stabilizationProgress", function(params) {
+      		document.getElementById('loadingBar').removeAttribute("style");
+	        var maxWidth = 496;
+	        var minWidth = 20;
+	        var widthFactor = params.iterations/params.total;
+	        var width = Math.max(minWidth,maxWidth * widthFactor);
+
+	        document.getElementById('bar').style.width = width + 'px';
+	        document.getElementById('text').innerHTML = Math.round(widthFactor*100) + '%';
+	    });
+	    network.once("stabilizationIterationsDone", function() {
+	        document.getElementById('text').innerHTML = '100%';
+	        document.getElementById('bar').style.width = '496px';
+	        document.getElementById('loadingBar').style.opacity = 0;
+	        // really clean the dom element
+	        setTimeout(function () {document.getElementById('loadingBar').style.display = 'none';}, 500);
+	    });
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
