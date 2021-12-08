@@ -1,0 +1,117 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 1000px;
+            height: 600px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "Jim", "label": "Jim", "shape": "dot", "size": 19}, {"font": {"color": "white"}, "id": "Michael", "label": "Michael", "shape": "dot", "size": 28}, {"font": {"color": "white"}, "id": "Dwight", "label": "Dwight", "shape": "dot", "size": 23}, {"font": {"color": "white"}, "id": "Pam", "label": "Pam", "shape": "dot", "size": 18}, {"font": {"color": "white"}, "id": "Ryan", "label": "Ryan", "shape": "dot", "size": 14}, {"font": {"color": "white"}, "id": "Roy", "label": "", "shape": "dot", "size": 13}, {"font": {"color": "white"}, "id": "Mr. Brown", "label": "", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Oscar", "label": "Oscar", "shape": "dot", "size": 15}, {"font": {"color": "white"}, "id": "Kelly", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Kevin", "label": "Kevin", "shape": "dot", "size": 14}, {"font": {"color": "white"}, "id": "Stanley", "label": "Stanley", "shape": "dot", "size": 13}, {"font": {"color": "white"}, "id": "Toby", "label": "Toby", "shape": "dot", "size": 5}, {"font": {"color": "white"}, "id": "Phyllis", "label": "Phyllis", "shape": "dot", "size": 12}, {"font": {"color": "white"}, "id": "Everybody", "label": "", "shape": "dot", "size": 11}, {"font": {"color": "white"}, "id": "Warehouse worker", "label": "", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": "Teammates", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Michael and Dwight", "label": "", "shape": "dot", "size": 7}, {"font": {"color": "white"}, "id": "Lonny", "label": "", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": "Darryl", "label": "Darryl", "shape": "dot", "size": 9}, {"font": {"color": "white"}, "id": "Katy", "label": "", "shape": "dot", "size": 9}, {"font": {"color": "white"}, "id": "Jan", "label": "Jan", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Todd Packer", "label": "", "shape": "dot", "size": 2}, {"font": {"color": "white"}, "id": "Man", "label": "", "shape": "dot", "size": 6}, {"font": {"color": "white"}, "id": "Angela", "label": "Angela", "shape": "dot", "size": 14}, {"font": {"color": "white"}, "id": "Meredith", "label": "Meredith", "shape": "dot", "size": 8}, {"font": {"color": "white"}, "id": "Travel Agent", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Man on Phone", "label": "", "shape": "dot", "size": 1}, {"font": {"color": "white"}, "id": "Madge", "label": "", "shape": "dot", "size": 4}, {"font": {"color": "white"}, "id": "Worker", "label": "", "shape": "dot", "size": 6}]);
+        edges = new vis.DataSet([{"from": "Jim", "to": "Michael", "value": 17, "weight": 17}, {"from": "Jim", "to": "Dwight", "value": 28, "weight": 28}, {"from": "Jim", "to": "Pam", "value": 23, "weight": 23}, {"from": "Jim", "to": "Ryan", "value": 4, "weight": 4}, {"from": "Jim", "to": "Roy", "value": 10, "weight": 10}, {"from": "Jim", "to": "Mr. Brown", "value": 1, "weight": 1}, {"from": "Jim", "to": "Oscar", "value": 3, "weight": 3}, {"from": "Jim", "to": "Kelly", "value": 1, "weight": 1}, {"from": "Jim", "to": "Kevin", "value": 5, "weight": 5}, {"from": "Jim", "to": "Stanley", "value": 2, "weight": 2}, {"from": "Jim", "to": "Toby", "value": 1, "weight": 1}, {"from": "Jim", "to": "Phyllis", "value": 3, "weight": 3}, {"from": "Jim", "to": "Everybody", "value": 1, "weight": 1}, {"from": "Jim", "to": "Warehouse worker", "value": 1, "weight": 1}, {"from": "Jim", "to": "Teammates", "value": 1, "weight": 1}, {"from": "Jim", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Jim", "to": "Lonny", "value": 1, "weight": 1}, {"from": "Jim", "to": "Darryl", "value": 1, "weight": 1}, {"from": "Jim", "to": "Katy", "value": 2, "weight": 2}, {"from": "Michael", "to": "Pam", "value": 22, "weight": 22}, {"from": "Michael", "to": "Dwight", "value": 25, "weight": 25}, {"from": "Michael", "to": "Jan", "value": 4, "weight": 4}, {"from": "Michael", "to": "Todd Packer", "value": 1, "weight": 1}, {"from": "Michael", "to": "Ryan", "value": 15, "weight": 15}, {"from": "Michael", "to": "Oscar", "value": 13, "weight": 13}, {"from": "Michael", "to": "Stanley", "value": 8, "weight": 8}, {"from": "Michael", "to": "Phyllis", "value": 4, "weight": 4}, {"from": "Michael", "to": "Man", "value": 1, "weight": 1}, {"from": "Michael", "to": "Mr. Brown", "value": 7, "weight": 7}, {"from": "Michael", "to": "Kevin", "value": 6, "weight": 6}, {"from": "Michael", "to": "Toby", "value": 2, "weight": 2}, {"from": "Michael", "to": "Kelly", "value": 2, "weight": 2}, {"from": "Michael", "to": "Angela", "value": 6, "weight": 6}, {"from": "Michael", "to": "Meredith", "value": 4, "weight": 4}, {"from": "Michael", "to": "Travel Agent", "value": 1, "weight": 1}, {"from": "Michael", "to": "Man on Phone", "value": 1, "weight": 1}, {"from": "Michael", "to": "Everybody", "value": 4, "weight": 4}, {"from": "Michael", "to": "Lonny", "value": 3, "weight": 3}, {"from": "Michael", "to": "Darryl", "value": 7, "weight": 7}, {"from": "Michael", "to": "Roy", "value": 7, "weight": 7}, {"from": "Michael", "to": "Warehouse worker", "value": 2, "weight": 2}, {"from": "Michael", "to": "Teammates", "value": 1, "weight": 1}, {"from": "Michael", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Michael", "to": "Madge", "value": 2, "weight": 2}, {"from": "Michael", "to": "Worker", "value": 1, "weight": 1}, {"from": "Michael", "to": "Katy", "value": 9, "weight": 9}, {"from": "Dwight", "to": "Pam", "value": 13, "weight": 13}, {"from": "Dwight", "to": "Oscar", "value": 5, "weight": 5}, {"from": "Dwight", "to": "Stanley", "value": 8, "weight": 8}, {"from": "Dwight", "to": "Phyllis", "value": 3, "weight": 3}, {"from": "Dwight", "to": "Man", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Ryan", "value": 5, "weight": 5}, {"from": "Dwight", "to": "Mr. Brown", "value": 2, "weight": 2}, {"from": "Dwight", "to": "Meredith", "value": 2, "weight": 2}, {"from": "Dwight", "to": "Jan", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Kevin", "value": 2, "weight": 2}, {"from": "Dwight", "to": "Angela", "value": 3, "weight": 3}, {"from": "Dwight", "to": "Roy", "value": 3, "weight": 3}, {"from": "Dwight", "to": "Everybody", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Warehouse worker", "value": 2, "weight": 2}, {"from": "Dwight", "to": "Teammates", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Madge", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Worker", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Darryl", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Lonny", "value": 1, "weight": 1}, {"from": "Dwight", "to": "Katy", "value": 2, "weight": 2}, {"from": "Pam", "to": "Jan", "value": 1, "weight": 1}, {"from": "Pam", "to": "Ryan", "value": 2, "weight": 2}, {"from": "Pam", "to": "Stanley", "value": 3, "weight": 3}, {"from": "Pam", "to": "Phyllis", "value": 4, "weight": 4}, {"from": "Pam", "to": "Oscar", "value": 4, "weight": 4}, {"from": "Pam", "to": "Man", "value": 1, "weight": 1}, {"from": "Pam", "to": "Roy", "value": 7, "weight": 7}, {"from": "Pam", "to": "Meredith", "value": 2, "weight": 2}, {"from": "Pam", "to": "Angela", "value": 4, "weight": 4}, {"from": "Pam", "to": "Everybody", "value": 1, "weight": 1}, {"from": "Pam", "to": "Warehouse worker", "value": 1, "weight": 1}, {"from": "Pam", "to": "Teammates", "value": 1, "weight": 1}, {"from": "Pam", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Pam", "to": "Katy", "value": 2, "weight": 2}, {"from": "Pam", "to": "Kevin", "value": 2, "weight": 2}, {"from": "Ryan", "to": "Stanley", "value": 2, "weight": 2}, {"from": "Ryan", "to": "Phyllis", "value": 1, "weight": 1}, {"from": "Ryan", "to": "Oscar", "value": 1, "weight": 1}, {"from": "Ryan", "to": "Kevin", "value": 1, "weight": 1}, {"from": "Ryan", "to": "Toby", "value": 1, "weight": 1}, {"from": "Ryan", "to": "Lonny", "value": 1, "weight": 1}, {"from": "Ryan", "to": "Darryl", "value": 2, "weight": 2}, {"from": "Ryan", "to": "Everybody", "value": 1, "weight": 1}, {"from": "Ryan", "to": "Roy", "value": 2, "weight": 2}, {"from": "Ryan", "to": "Katy", "value": 1, "weight": 1}, {"from": "Roy", "to": "Angela", "value": 1, "weight": 1}, {"from": "Roy", "to": "Kevin", "value": 1, "weight": 1}, {"from": "Roy", "to": "Warehouse worker", "value": 1, "weight": 1}, {"from": "Roy", "to": "Teammates", "value": 1, "weight": 1}, {"from": "Roy", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Roy", "to": "Darryl", "value": 2, "weight": 2}, {"from": "Roy", "to": "Worker", "value": 1, "weight": 1}, {"from": "Roy", "to": "Lonny", "value": 1, "weight": 1}, {"from": "Mr. Brown", "to": "Oscar", "value": 1, "weight": 1}, {"from": "Mr. Brown", "to": "Kevin", "value": 2, "weight": 2}, {"from": "Oscar", "to": "Stanley", "value": 3, "weight": 3}, {"from": "Oscar", "to": "Phyllis", "value": 3, "weight": 3}, {"from": "Oscar", "to": "Man", "value": 1, "weight": 1}, {"from": "Oscar", "to": "Kelly", "value": 1, "weight": 1}, {"from": "Oscar", "to": "Kevin", "value": 5, "weight": 5}, {"from": "Oscar", "to": "Angela", "value": 4, "weight": 4}, {"from": "Oscar", "to": "Meredith", "value": 2, "weight": 2}, {"from": "Oscar", "to": "Everybody", "value": 2, "weight": 2}, {"from": "Oscar", "to": "Katy", "value": 1, "weight": 1}, {"from": "Kelly", "to": "Kevin", "value": 1, "weight": 1}, {"from": "Kevin", "to": "Stanley", "value": 2, "weight": 2}, {"from": "Kevin", "to": "Phyllis", "value": 1, "weight": 1}, {"from": "Kevin", "to": "Angela", "value": 4, "weight": 4}, {"from": "Kevin", "to": "Toby", "value": 1, "weight": 1}, {"from": "Kevin", "to": "Everybody", "value": 1, "weight": 1}, {"from": "Stanley", "to": "Phyllis", "value": 3, "weight": 3}, {"from": "Stanley", "to": "Man", "value": 1, "weight": 1}, {"from": "Stanley", "to": "Meredith", "value": 2, "weight": 2}, {"from": "Stanley", "to": "Angela", "value": 1, "weight": 1}, {"from": "Stanley", "to": "Everybody", "value": 1, "weight": 1}, {"from": "Stanley", "to": "Katy", "value": 1, "weight": 1}, {"from": "Toby", "to": "Katy", "value": 1, "weight": 1}, {"from": "Phyllis", "to": "Man", "value": 1, "weight": 1}, {"from": "Phyllis", "to": "Angela", "value": 2, "weight": 2}, {"from": "Phyllis", "to": "Everybody", "value": 2, "weight": 2}, {"from": "Phyllis", "to": "Meredith", "value": 1, "weight": 1}, {"from": "Everybody", "to": "Angela", "value": 2, "weight": 2}, {"from": "Everybody", "to": "Meredith", "value": 2, "weight": 2}, {"from": "Warehouse worker", "to": "Teammates", "value": 1, "weight": 1}, {"from": "Warehouse worker", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Warehouse worker", "to": "Madge", "value": 1, "weight": 1}, {"from": "Teammates", "to": "Michael and Dwight", "value": 1, "weight": 1}, {"from": "Lonny", "to": "Angela", "value": 1, "weight": 1}, {"from": "Lonny", "to": "Darryl", "value": 3, "weight": 3}, {"from": "Lonny", "to": "Worker", "value": 1, "weight": 1}, {"from": "Darryl", "to": "Angela", "value": 1, "weight": 1}, {"from": "Darryl", "to": "Madge", "value": 1, "weight": 1}, {"from": "Darryl", "to": "Worker", "value": 1, "weight": 1}, {"from": "Katy", "to": "Angela", "value": 1, "weight": 1}, {"from": "Jan", "to": "Todd Packer", "value": 1, "weight": 1}, {"from": "Angela", "to": "Meredith", "value": 2, "weight": 2}, {"from": "Angela", "to": "Worker", "value": 1, "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "forceAtlas2Based": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.01,
+            "damping": 0.4,
+            "gravitationalConstant": -80,
+            "springConstant": 0.08,
+            "springLength": 50
+        },
+        "solver": "forceAtlas2Based",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
