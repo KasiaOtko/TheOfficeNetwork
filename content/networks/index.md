@@ -7,7 +7,9 @@ draft: false
 In this section we applied different algorithms for community detection. By partitioning our network into communities we want to uncover hidden structure in the network and discover close relationships between our characters.  
 
 <h4> Louvain algorithm for community detection </h4>
-We can detect communities using variety of methods. The below visualisation shows communities detected by **Louvain algorithm**. The great part is that it is interactive - you can zoom in to investigate the links in more detail, click on the nodes to highlight the links or even drag the nodes! For the sake of clarity, only the names of the most prominnet characters are displayed.
+We can detect communities using variety of methods. The below visualisation shows communities detected by <b>Louvain algorithm</b>. The great part is that it is interactive - you can zoom in to investigate the links in more detail, click on the nodes to highlight the links or even drag the nodes! For the sake of clarity, only the names of the most prominnet characters are displayed.  
+
+</br>
 
 <div align="center">
 <iframe src="first_network.html" width=1000px height=600px></iframe>
@@ -250,11 +252,9 @@ After running the three algorithms on a weighted network, we obtained the follow
 
 Unfortunately, the results are even **worse than for the basic network**, created from Wiki pages.  
 
-But we can observe that this network also consists of many nodes with a very low degree - characters that played only in one or two scenes and are mostly connected only to the biggest hubs. What if we could remove these nodes in a specified manner, downgrade the role of hubs and focus our attention only on the most relevant connections? This is what the next section is going to be about.
+In the end, we would like to mention that we also **extracted backbone of this network**, as described in [5]. The aim was to create a reduced but hopefully more meaningful version of our initial weighted network and **focus our attention only on the most significant connections** to see if the community structure in such a representation will be better defined. The whole process is explained in the explainer notebook.
 
-<h4> Extracting backbone of a weighted network </h4>
-
-This subsection exploits the idea presented in "Extracting the multiscale backbone of complex weighted networks" [5]. We aim at creating a reduced but more meaningful version of our initial weighted network and **focus our attention only on the most significant connections** to see if the community structure in such a representation will be better defined. 
+However, this procedure did not improve the modularity score. We can therefore conclude that **most of the plot of The Office indeed focuses on the main characters** and the interactions between themselves or the side characters, but **we do not observe any relations between the side or supporting characters**. This impacts the modularity score, because we have a lot of **"satellite" nodes** - characters that played in single scenes and whose links lead only to hubs or other side characters who by chance played in the same scene (it can be well observed in the visualisation of the full weighted network above).
 
 <h3> References </h3>
 

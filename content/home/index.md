@@ -1,12 +1,11 @@
 ---
-title: "That's what the data said"
+title: ""
 draft: false
 weight: 0
 ---
 
-Analysis of a network of characters from The Office show and their dialogues.
-
+![Wallpaper](/img/Wallpaper.png)
 
 <br>
-<h7>The explainer notebook can be found here.</h7>
-<br>
+
+## An investigation of the character network and dialogues in The Office.

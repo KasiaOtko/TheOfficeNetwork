@@ -24,7 +24,12 @@ What is interesting, even though we set the hyperparameter responsible for a pri
 Dwight and Michael are also in the same cluster, which might be explained by the fact that both are really interested in holding a managerial position.
 
 <h3>Extra: Hellinger distance</h3>
-We thought it could also be interesting to actually measure what are THE MOST similar characters in terms of the vocabulary they use. For this purpose we will use **Hellinger distance** [2] metric which was used in [1] to calculate **topic-based similarity measure between documents using posterior topic proportions**. This measure can tell us a difference between two probability distributions **P** and **Q**. The output is between 0 and 1, where the maximum distance 1 is achieved when **P** assigns probability zero to every element to which the **Q** assigns a positive probability, and vice versa [2].
+
+We thought it could also be interesting to actually measure what are THE MOST similar characters in terms of the vocabulary they use. For this purpose we will use **Hellinger distance** [2] - metric utilised in [1] - to calculate **topic-based similarity measure between documents using posterior topic proportions**. This measure can tell us a difference between two probability distributions **P** and **Q**. The output is between 0 and 1, where the maximum distance 1 is achieved when **P** assigns probability zero to every element to which the **Q** assigns a positive probability, and vice versa [2]. In our case **P** and **Q** are LDA topic distributions.  
+
+Below presented are top 3 pairs with the most similar vocabulary according to the described distance metric.
+
+<img src="/img/Hellinger.png" alt="drawing" width="550"/>
 
 # References
 
