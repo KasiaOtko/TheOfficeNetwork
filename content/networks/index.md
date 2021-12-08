@@ -1,5 +1,5 @@
 ---
-title: "Network analysis"
+title: "Community detection"
 date: 2021-11-27T19:10:18+01:00
 draft: false
 ---
@@ -12,7 +12,7 @@ We can detect communities using variety of methods. The below visualisation show
 </br>
 
 <div align="center">
-<iframe src="first_network.html" width=1000px height=600px></iframe>
+<iframe src="first_network.html" width=1100px height=650px></iframe>
 </div>
 
 Number of communities found is 9 and the corresponding modularity score is 0.36. In the context of this measure a partition is good when when there are **many edges within communities and only a few between them** [1] (nodes are densely connected within a community and sparsely connected with the rest of the graph [2]). According to [1], modularity above about 0.3 is a good indicator of significant community structure in a network in practice (network corresponds to a statistically surprising arrangement of edges).
@@ -243,7 +243,7 @@ Our dialogues dataset contains every line ever said in The Office. We also know 
 The resulting network is presented below:
 
 <div align="center">
-<iframe src="weighted_network.html" width=1000px height=500px></iframe>
+<iframe src="weighted_network.html" width=1100px height=550px></iframe>
 </div>
 
 After running the three algorithms on a weighted network, we obtained the following results:
